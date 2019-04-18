@@ -1,0 +1,36 @@
+{
+  "name": "@storybook/addon-roundtrip-mvp",
+  "version": "5.1.0-alpha.30",
+  "private": true,
+  "description": "a demo addon for storybook to show a roundtrip",
+  "keywords": [
+    "addon",
+    "storybook",
+    "channel",
+    "starter",
+    "boilerplate"
+  ],
+  "homepage": "https://github.com/storybooks/storybook#readme",
+  "bugs": {
+    "url": "https://github.com/storybooks/storybook/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/storybooks/storybook.git",
+    "directory": "addons/roundtrip-mvp"
+  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare": "node ../../scripts/prepare.js"
+  },
+  "dependencies": {
+    "@storybook/addons": "5.1.0-alpha.30",
+    "@storybook/api": "5.1.0-alpha.30",
+    "@storybook/client-logger": "5.1.0-alpha.30",
+    "@storybook/components": "5.1.0-alpha.30",
+    "@storybook/core-events": "5.1.0-alpha.30",
+    "@storybook/theming": "5.1.0-alpha.30"
+  }
+}

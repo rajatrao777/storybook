@@ -8,6 +8,7 @@
   },
   "workspaces": [
     "addons/*",
+    "development-kits/*",
     "addons/storyshots/*",
     "app/*",
     "lib/*",

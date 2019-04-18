@@ -6,6 +6,8 @@ import { withCssResources } from '@storybook/addon-cssresources';
 import { withA11y } from '@storybook/addon-a11y';
 import { withNotes } from '@storybook/addon-notes';
 
+import '@storybook/addon-roundtrip-mvp';
+
 import 'storybook-chromatic';
 
 import addHeadWarning from './head-warning';

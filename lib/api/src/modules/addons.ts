@@ -43,6 +43,8 @@ export interface SubAPI {
   getPanels: () => Collection;
   getSelectedPanel: () => string;
   setSelectedPanel: (panelName: string) => void;
+  getAddonState: (addonId: string) => any;
+  setAddonState: (addonId: string, stateChange: object) => unknown;
 }
 
 export function ensurePanel(panels: Panels, selectedPanel?: string, currentPanel?: string) {
@@ -69,11 +71,19 @@ export default ({ provider, store }: Module) => {
     setSelectedPanel: panelName => {
       store.setState({ selectedPanel: panelName }, { persistence: 'session' });
     },
+    getAddonState: addonId => store.getState().addons[addonId],
+    setAddonState: (addonId, stateChange) => {
+      const current = store.getState().addons[addonId];
+      const newValue = typeof stateChange === 'function' ? stateChange(current) : stateChange;
+
+      store.setState(s => ({ addons: { ...s.addons, [addonId]: newValue } }));
+    },
   };
 
   return {
     api,
     state: {
+      addons: {},
       selectedPanel: ensurePanel(api.getPanels(), store.getState().selectedPanel),
     },
   };

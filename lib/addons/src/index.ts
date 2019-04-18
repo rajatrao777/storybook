@@ -40,10 +40,13 @@ interface Elements {
   [key: string]: Collection;
 }
 
+type ChannelCallback = (channel: Channel) => void;
+
 export class AddonStore {
   private loaders: Loaders = {};
   private elements: Elements = {};
   private channel: Channel | undefined;
+  private channelCallbacks: ChannelCallback[] = [];
 
   getChannel = (): Channel => {
     // this.channel should get overwritten by setChannel. If it wasn't called (e.g. in non-browser environment), throw.
@@ -58,6 +61,20 @@ export class AddonStore {
   hasChannel = (): boolean => !!this.channel;
   setChannel = (channel: Channel): void => {
     this.channel = channel;
+    this.channelCallbacks.forEach(fn => {
+      try {
+        fn(channel);
+      } catch (e) {
+        // e
+      }
+    });
+  };
+  ready = (fn: ChannelCallback) => {
+    if (this.hasChannel()) {
+      fn(this.getChannel());
+    } else {
+      this.channelCallbacks.push(fn);
+    }
   };
 
   getElements = (type: Types): Collection => {

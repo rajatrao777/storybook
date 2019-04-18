@@ -15,6 +15,7 @@ function getCommand(watch) {
     '**/*.story.*',
     '**/*.stories.*',
     '**/__snapshots__',
+    '**/dist',
     '**/*.d.ts',
   ];
 
